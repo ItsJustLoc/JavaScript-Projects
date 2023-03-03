@@ -1,9 +1,19 @@
-<script type="text/javascript">
+function balls() {
+   alert("working");
+}
 
-var js_name = ['elem1', 'elem2']
-
- for (var i = 0; i < js_name.length; i++) {
-    alert(js_name[i]);
- };
-
-</script>
+// more robust onload for function
+if(window.attachEvent) {
+   window.attachEvent('onload', yourFunctionName);
+} else {
+   if(window.onload) {
+       var curronload = window.onload;
+       var newonload = function(evt) {
+           curronload(evt);
+           balls(evt);
+       };
+       window.onload = newonload;
+   } else {
+       window.onload = balls;
+   }
+}
